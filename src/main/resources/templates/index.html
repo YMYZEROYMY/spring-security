@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1,minimum-scale=1">
+    <title>YMY电影院</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <script type="text/javascript" th:src="@{js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap-select.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/index.js}"></script>
+</head>
+<body>
+<!--这是顶部栏-->
+<div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#target">
+                <span class="sr-only">==</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">YMY Design</a>
+        </div>
+        <div class="collapse navbar-collapse" id="target">
+            <ul class="nav navbar-nav">
+                <li><a href="#" onclick="switchLog();">转换登录状态</a></li>
+                <li><a href="">博文</a></li>
+                <li><a href="">留言</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">类型选择<span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <ul class="nav nav-stacked">
+                                <li><a href="">动作</a> </li>
+                                <li><a href="">戏剧</a> </li>
+                                <li><a href="">爱情</a> </li>
+                                <li><a href="">热血</a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="电影名、导演、演员" name="search">
+                    <input type="submit" class="btn btn-default" value="搜索">
+                </div>
+            </form>
+            <!---->
+            <ul class="nav navbar-nav navbar-right" id="showLoginUl">
+                <li><a href="#myModal" data-toggle="modal">登录</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" id="showLogoutUl" style="display: none">
+                <li><a class="logout" onclick="solveLogout();">退出</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<!--这是登陆弹窗-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">登陆账号</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="loginForm" onsubmit="return login();">
+                    <div class="col-md-10 col-md-offset-1 myMP">
+                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                    </div>
+                    <div class="col-md-10 col-md-offset-1 myMP">
+                        <input class="form-control" placeholder="密码" type="password" name="password">
+                    </div>
+                    <div class="col-md-10 col-md-offset-1 myMP">
+                        <label>
+                            <input type="checkbox" name="remember-me" value="true">自动登陆
+                        </label>
+                    </div>
+                    <div class="col-md-12 myB">
+                        <input class="btn btn-primary form-control" type="submit" value="登录">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+
+<div class="container">
+    <div class="row" id="hotMovies">
+
+    </div>
+</div>
+</body>
+</html>

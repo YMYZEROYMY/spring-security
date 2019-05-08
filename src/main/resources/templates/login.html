@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆界面</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
+    <script type="text/javascript" th:src="@{js/jquery-3.3.1.js}"></script>
+    <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">简单Spring Boot Security 示例</h3>
+    </div>
+</div>
+<div id="mainWrapper">
+    <form action="/login" method="post" >
+        <h2>用户登录</h2>
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input type="text" name="username" placeholder="请输入用户名"></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" name="password" placeholder="请输入密码"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="checkbox" name="remember-me" id="remember" value="true"><label for="remember">记住我</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
