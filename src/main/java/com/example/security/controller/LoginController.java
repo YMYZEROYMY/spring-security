@@ -28,7 +28,9 @@ public class LoginController {
     }
     @RequestMapping("/afterLogin")
     public String afterLogin(){
+        Map<String,String> map=new HashMap<>();
         return "loginSuccess";
+
     }
 
 //    匹配所有url
