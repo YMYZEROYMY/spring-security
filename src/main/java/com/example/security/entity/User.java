@@ -1,8 +1,6 @@
 package com.example.security.entity;
 
-import org.hibernate.engine.internal.Cascade;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -14,15 +12,15 @@ import java.util.List;
 
 @Entity
 public class User implements Serializable, UserDetails {
-    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String username;
     private String password;
 
-    @ManyToMany(cascade={CascadeType.REFRESH},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     private List<Role> roles;
+
     //账户是否过期
 //    private boolean accountNonExpired;
     //账户是否被冻结
@@ -34,6 +32,11 @@ public class User implements Serializable, UserDetails {
 
     public User() {
         super();
+    }
+
+    @Override
+    public String toString() {
+        return "username:"+username+" password:"+password;
     }
 
 //    public UserInfo(String username, String password, String role, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled) {
@@ -49,9 +52,9 @@ public class User implements Serializable, UserDetails {
     //    这是权限
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities=new ArrayList<>();
-        List<Role> roles=this.getRoles();
-        for(Role role:roles){
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        List<Role> roles = this.getRoles();
+        for (Role role : roles) {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authorities;
@@ -103,11 +106,11 @@ public class User implements Serializable, UserDetails {
         this.username = username;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

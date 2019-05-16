@@ -19,17 +19,18 @@ public class MovieController {
     @RequestMapping("/getHotMovie")
     @ResponseBody
     public ArrayList<Movie> getHotMovie(){
-        Jedis jedis=RedisPool.getJedis();
-        ArrayList<Movie> target=new ArrayList<>();
-        assert jedis != null;
-        Set<String> movies=jedis.smembers("movies");
-        for(String movieName:movies){
-            Movie movie=new Movie();
-            movie.setName(movieName);
-            movie.setPath("img/"+movieName+".jpg");
-            movie.setInfo(jedis.hget("movieInfo",movieName));
-            target.add(movie);
-        }
+//        Jedis jedis=RedisPool.getJedis();
+//        ArrayList<Movie> target=new ArrayList<>();
+//        assert jedis != null;
+//        Set<String> movies=jedis.smembers("movies");
+//        for(String movieName:movies){
+//            Movie movie=new Movie();
+//            movie.setName(movieName);
+//            movie.setPath("img/"+movieName+".jpg");
+//            movie.setInfo(jedis.hget("movieInfo",movieName));
+//            target.add(movie);
+//        }
+
 //        Movie movie1=new Movie("电影1","我的电影1","img/01.png");
 //        Movie movie2=new Movie("电影2","我的电影2","img/02.png");
 //        Movie movie3=new Movie("电影3","我的电影3","img/03.png");
@@ -38,7 +39,9 @@ public class MovieController {
 //        movies.add(movie2);
 //        movies.add(movie3);
 //        movies.add(movie4);
-        RedisPool.returnResource(jedis);
-        return target;
+
+//        RedisPool.returnResource(jedis);
+//        return target;
+        return null;
     }
 }

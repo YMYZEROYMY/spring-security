@@ -24,9 +24,6 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private MyUserDetailsService userDetailsService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();

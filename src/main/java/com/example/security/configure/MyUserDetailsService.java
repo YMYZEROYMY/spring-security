@@ -17,9 +17,6 @@ import javax.annotation.Resource;
 @Component
 public class MyUserDetailsService implements UserDetailsService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Resource
     private UserRepository userRepository;
 
@@ -30,9 +27,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
         logger.info("用户的用户名:"+s);
 
-        String password="123123";
-        logger.info("密码："+password);
-
         //此处查询数据库获取用户信息
         User user= userRepository.findByUsername(s);
         if(user==null){
@@ -41,8 +35,4 @@ public class MyUserDetailsService implements UserDetailsService {
         return user;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return  new BCryptPasswordEncoder();
-    }
 }

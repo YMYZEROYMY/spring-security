@@ -1,5 +1,8 @@
 package com.example.security.configure;
 
+import com.example.security.repository.UserRepository;
+import com.example.security.service.UserService;
+import com.example.security.util.GetUserTeleUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -10,6 +13,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +26,9 @@ import java.util.Map;
 public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Resource
+    private UserService userService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
@@ -46,15 +53,20 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
 
 //        new DefaultRedirectStrategy().sendRedirect(request, response, "/whoim");
 
+
 //        返回json格式
-        Object principle=authentication.getPrincipal();
-        String name="";
-        if(principle instanceof UserDetails){
-            name=((UserDetails) principle).getUsername();
-        }
+//        Object principle=authentication.getPrincipal();
+//        String name="";
+//        if(principle instanceof UserDetails){
+//            name=((UserDetails) principle).getUsername();
+//        }
+
+        String name=GetUserTeleUtils.getUserName();
+
         Map<String,String> map=new HashMap<>();
         map.put("flag","true");
-        map.put("msg","登录成功，欢迎您，"+name);
+        map.put("msg","登录成功");
+        map.put("name",name);
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write(objectMapper.writeValueAsString(map));
     }

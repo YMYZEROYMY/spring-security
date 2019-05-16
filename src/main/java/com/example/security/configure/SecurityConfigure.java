@@ -62,6 +62,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").logoutSuccessHandler(myLogoutSuccessHandler)
                 .permitAll()
                 .and()
+                //权限拦截
                 .authorizeRequests()
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/whoim").authenticated()

@@ -38,10 +38,10 @@
                     <ul class="dropdown-menu">
                         <li>
                             <ul class="nav nav-stacked">
-                                <li><a href="">动作</a> </li>
-                                <li><a href="">戏剧</a> </li>
-                                <li><a href="">爱情</a> </li>
-                                <li><a href="">热血</a> </li>
+                                <li><a href="">动作</a></li>
+                                <li><a href="">戏剧</a></li>
+                                <li><a href="">爱情</a></li>
+                                <li><a href="">热血</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -59,7 +59,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right" id="showLogoutUl" style="display: none">
-                <li><a class="logout" onclick="solveLogout();">退出</a></li>
+                <li><a id="usernameDiv"></a></li>
+                <li> <a class="logout" onclick="solveLogout();">退出</a></li>
             </ul>
 
         </div>
@@ -72,25 +73,59 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">登陆账号</h4>
             </div>
             <div class="modal-body">
-                <form method="post" id="loginForm" onsubmit="return login();">
-                    <div class="col-md-10 col-md-offset-1 myMP">
-                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <a href="#tab1" data-toggle="tab">
+                            <div class="btn">登录</div>
+                        </a>
                     </div>
-                    <div class="col-md-10 col-md-offset-1 myMP">
-                        <input class="form-control" placeholder="密码" type="password" name="password">
+                    <div class="btn-group">
+                        <a href="#tab2" data-toggle="tab">
+                            <div class="btn">注册</div>
+                        </a>
                     </div>
-                    <div class="col-md-10 col-md-offset-1 myMP">
-                        <label>
-                            <input type="checkbox" name="remember-me" value="true">自动登陆
-                        </label>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1">
+                                <form method="post" id="loginForm" onsubmit="return login();">
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <input class="form-control" placeholder="密码" type="password" name="password">
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <label>
+                                            <input type="checkbox" name="remember-me" value="true">自动登陆
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12 myB">
+                                        <input class="btn btn-primary form-control" type="submit" value="登录">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade " id="tab2">
+                                <form method="post" id="registerForm" onsubmit="return register();">
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <input class="form-control" placeholder="密码" type="password" name="password">
+                                    </div>
+                                    <div class="col-md-12 myB">
+                                        <input class="btn btn-primary form-control" type="submit" value="注册">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-12 myB">
-                        <input class="btn btn-primary form-control" type="submit" value="登录">
-                    </div>
-                </form>
+                </div>
+
             </div>
             <div class="modal-footer">
             </div>
