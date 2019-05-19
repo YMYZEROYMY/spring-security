@@ -5,15 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1,minimum-scale=1">
-    <title>YMY电影院</title>
     <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{css/bootstrap-select.min.css}">
     <link rel="stylesheet" th:href="@{css/bootstrap-theme.min.css}">
     <link rel="stylesheet" th:href="@{css/index.css}">
     <script type="text/javascript" th:src="@{js/jquery-3.3.1.js}"></script>
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{js/bootstrap-select.min.js}"></script>
     <script type="text/javascript" th:src="@{js/index.js}"></script>
+    <script type="text/javascript" th:src="@{js/base.js}"></script>
+    <title>YMY电影院</title>
 </head>
 <body>
 <!--这是顶部栏-->
@@ -26,13 +25,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">YMY Design</a>
+            <a href="/" class="navbar-brand">YMY Design</a>
         </div>
         <div class="collapse navbar-collapse" id="target">
             <ul class="nav navbar-nav">
                 <li><a href="#" onclick="switchLog();">转换登录状态</a></li>
-                <li><a href="">博文</a></li>
-                <li><a href="">留言</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">类型选择<span class="caret"></span> </a>
                     <ul class="dropdown-menu">
@@ -47,9 +44,9 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left" role="search" id="searchForm" onsubmit="return searchMovie();">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="电影名、导演、演员" name="search">
+                    <input type="text" class="form-control" placeholder="电影名、导演、演员" name="target">
                     <input type="submit" class="btn btn-default" value="搜索">
                 </div>
             </form>
@@ -139,5 +136,8 @@
 
     </div>
 </div>
+
+
+
 </body>
 </html>

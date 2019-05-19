@@ -14,7 +14,7 @@ public class Movie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @ManyToOne(targetEntity = Director.class, cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = Director.class, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
 
@@ -22,13 +22,13 @@ public class Movie implements Serializable {
     @JoinTable(name = "movies_and_actors",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "id", nullable = false))
-    private List<Actor> actors;
+    private Set<Actor> actors;
 
     @ManyToMany(targetEntity = Type.class, cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(name = "movies_and_types",
             joinColumns = @JoinColumn(name = "movie_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "type_id", referencedColumnName = "id", nullable = false))
-    private List<Type> types;
+    private Set<Type> types;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
@@ -40,7 +40,7 @@ public class Movie implements Serializable {
         super();
     }
 
-    public Movie(String name, Director director, List<Actor> actors, List<Type> types, Date date, int popularity, int ticket, double price) {
+    public Movie(String name, Director director, Set<Actor> actors, Set<Type> types, Date date, int popularity, int ticket, double price) {
         this.name = name;
         this.director = director;
         this.actors = actors;
@@ -75,19 +75,19 @@ public class Movie implements Serializable {
         this.director = director;
     }
 
-    public List<Actor> getActors() {
+    public Set<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(List<Actor> actors) {
+    public void setActors(Set<Actor> actors) {
         this.actors = actors;
     }
 
-    public List<Type> getTypes() {
+    public Set<Type> getTypes() {
         return types;
     }
 
-    public void setTypes(List<Type> types) {
+    public void setTypes(Set<Type> types) {
         this.types = types;
     }
 

@@ -3,6 +3,7 @@ package com.example.security.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Director implements Serializable {
@@ -11,8 +12,8 @@ public class Director implements Serializable {
     private int id;
     private String name;
 
-    @OneToMany(cascade={CascadeType.REFRESH},fetch = FetchType.LAZY,mappedBy = "director")
-    private List<Movie> movies;
+    @OneToMany(targetEntity = Movie.class,mappedBy = "director")
+    private Set<Movie> movies;
 
     public Director() {
         super();
@@ -38,11 +39,11 @@ public class Director implements Serializable {
         this.name = name;
     }
 
-    public List<Movie> getMovies() {
+    public Set<Movie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(Set<Movie> movies) {
         this.movies = movies;
     }
 }

@@ -1,24 +1,62 @@
 package com.example.security.controller;
 
+import com.example.security.DTO.DTOFullMovie;
+import com.example.security.DTO.DTOMovie;
+import com.example.security.entity.Actor;
+import com.example.security.entity.Director;
 import com.example.security.entity.Movie;
 import com.example.security.redis.RedisPool;
+import com.example.security.service.MovieService;
 import org.springframework.beans.factory.support.ManagedSet;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
 @RequestMapping("/movie")
 public class MovieController {
+
+    @Resource
+    private MovieService movieService;
+
+    @RequestMapping("/searchMovie")
+    @ResponseBody
+    public ArrayList<DTOMovie> searchMovie(String target){
+        return movieService.searchMovie(target);
+    }
+
+    @RequestMapping("/detail/{id}")
+    public String detail(@PathVariable(value = "id") int id,
+                         HttpServletRequest request){
+        request.setAttribute("id",id);
+        System.out.println("电影id:"+id);
+        return "movie_detail";
+    }
+
+    @RequestMapping("/getFullMovie")
+    @ResponseBody
+    public DTOFullMovie getFullMovie(int id){
+        System.out.println("获取完全的movie:"+id);
+        return movieService.getFullMovie(id);
+    }
+
     @RequestMapping("/getHotMovie")
     @ResponseBody
-    public ArrayList<Movie> getHotMovie(){
+    public ArrayList<DTOMovie> getHotMovie(){
+
+
 //        Jedis jedis=RedisPool.getJedis();
 //        ArrayList<Movie> target=new ArrayList<>();
 //        assert jedis != null;
@@ -42,6 +80,13 @@ public class MovieController {
 
 //        RedisPool.returnResource(jedis);
 //        return target;
-        return null;
+        return movieService.getAll();
     }
+
+    //初始化电影
+//    @RequestMapping("/addMovie")
+//    @ResponseBody
+//    public void addMovie(){
+//        movieService.addMovie();
+//    }
 }

@@ -3,6 +3,7 @@ package com.example.security.controller;
 import com.example.security.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,12 +20,8 @@ public class UserController {
 
     @RequestMapping("/bug")
     @ResponseBody
-    public Map<String, String> bug() {
-
-        HashMap<String, String> temp = new HashMap<>();
-        temp.put("flag", "true");
-        temp.put("message", "购买成功");
-        return temp;
+    public Map<String, String> bug(int id,int number) {
+        return userService.bug(id,number);
     }
 
     @RequestMapping("/whoim")

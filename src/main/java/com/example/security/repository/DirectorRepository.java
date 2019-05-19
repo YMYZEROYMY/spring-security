@@ -1,4 +1,7 @@
 package com.example.security.repository;
 
-public interface DirectorRepository {
+import com.example.security.entity.Director;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DirectorRepository extends JpaRepository<Director,Integer> {
 }
