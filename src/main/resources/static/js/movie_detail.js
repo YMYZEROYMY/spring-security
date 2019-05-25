@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    whoim();
     getFullMovie();
     getSameTypeMovie();
 });
@@ -15,7 +14,10 @@ function buy() {
         alert("请输入购买数量");
         return false;
     }
-    if (!confirm("确定购买吗？\n数量:" + buyNumber)) {
+    var price=parseFloat($("#price").text());
+    var sum=(buyNumber*price).toFixed(2);
+    console.log(price);
+    if (!confirm("确定购买吗？\n数量:" + buyNumber+"\n总价:"+sum)) {
         return false;
     }
     var invoiceInfo = {
@@ -39,6 +41,7 @@ function buy() {
 
 function solveBuyResult(data) {
     if (data.flag === "true") {
+        $("#number").val(1);
         alert("购买成功");
     } else {
         alert("购买失败\n提示：" + data.msg);
@@ -100,6 +103,7 @@ function addMovieDetail(data) {
     $("#date").text(data.date);
     $("#ticket").text(data.ticket);
     $("#price").text(data.price);
+    $("#popularity").text(data.popularity);
 
     $("#number").attr("max", data.ticket);
 

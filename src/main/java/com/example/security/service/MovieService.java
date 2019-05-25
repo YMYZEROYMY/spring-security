@@ -11,6 +11,7 @@ import com.example.security.repository.DirectorRepository;
 import com.example.security.repository.MovieRepository;
 import com.example.security.repository.TypeRepository;
 import com.example.security.util.DTOChange;
+import com.example.security.util.TypeComparator;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,8 +33,9 @@ public class MovieService {
     public ArrayList<DTOMovie> getSameTypeMovie(int id){
         Movie movie=movieRepository.findById(id);
         Set<Type> types=movie.getTypes();
-        Object[] typeArrayList=types.toArray();
-        List<Movie> movies=movieRepository.findMoviesByTypesContainsOrderByPopularityDesc((Type) typeArrayList[0]);
+        ArrayList<Type> tempMovies = new ArrayList<>(types);
+        tempMovies.sort(new TypeComparator());
+        List<Movie> movies=movieRepository.findMoviesByTypesContainsOrderByPopularityDesc(tempMovies.get(0));
         List<Movie> partMovies=new ArrayList<>();
         int index=0;
         while (index<4&&index<movies.size()){

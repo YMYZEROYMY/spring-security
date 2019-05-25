@@ -1,5 +1,6 @@
 package com.example.security.controller;
 
+import com.example.security.DTO.DTOInvoice;
 import com.example.security.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,4 +32,9 @@ public class UserController {
         return userService.whoIm();
     }
 
+    @RequestMapping("/getInvoice")
+    @ResponseBody
+    public ArrayList<DTOInvoice> getInvoice(){
+        return userService.getInvoice();
+    }
 }

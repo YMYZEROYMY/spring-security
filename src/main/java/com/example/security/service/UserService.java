@@ -1,5 +1,6 @@
 package com.example.security.service;
 
+import com.example.security.DTO.DTOInvoice;
 import com.example.security.entity.Invoice;
 import com.example.security.entity.Movie;
 import com.example.security.entity.Role;
@@ -8,6 +9,7 @@ import com.example.security.repository.InvoiceRepository;
 import com.example.security.repository.MovieRepository;
 import com.example.security.repository.RoleRepository;
 import com.example.security.repository.UserRepository;
+import com.example.security.util.DTOChange;
 import com.example.security.util.GetUserTeleUtils;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,12 @@ public class UserService {
     }
 
     @Transactional
+    public ArrayList<DTOInvoice> getInvoice(){
+        List<Invoice> invoices=invoiceRepository.findInvoicesByUser_UsernameOrderByIdDesc(GetUserTeleUtils.getUserName());
+        return DTOChange.invoicesToDTO(invoices);
+    }
+
+    @Transactional
     public HashMap<String, String> bug(int movieId, int number) {
         System.out.println("准备购买电影id:"+movieId+"数量："+number);
         String flag = "false";
@@ -55,9 +63,9 @@ public class UserService {
         } else {
             User user = userRepository.findByUsername(username);
             Date date = new Date();
-            Invoice invoice = new Invoice(user, movie, date, number);
+            Invoice invoice = new Invoice(user, movie, date, number,movie.getPrice()*number);
             movie.setTicket(movie.getTicket() - number);
-            movie.setPopularity(movie.getPopularity()+10);
+            movie.setPopularity(movie.getPopularity()+100*number);
             movieRepository.save(movie);
             invoiceRepository.save(invoice);
             flag = "true";

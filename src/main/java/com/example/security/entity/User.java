@@ -18,7 +18,7 @@ public class User implements Serializable, UserDetails {
     private String username;
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Role> roles;
 
     //账户是否过期

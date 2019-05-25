@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
     getHotMovie();
-    whoim();
 });
 
 function getHotMovie() {

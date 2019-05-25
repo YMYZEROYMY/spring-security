@@ -10,6 +10,7 @@ public class DTOMovie {
     private Double price;
     private String directorName;
     private int ticket;
+    private int popularity;
 
     public DTOMovie(Movie movie){
         BeanUtils.copyProperties(movie,this);
@@ -63,5 +64,13 @@ public class DTOMovie {
 
     public void setDirectorName(String directorName) {
         this.directorName = directorName;
+    }
+
+    public int getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+        this.popularity = popularity;
     }
 }

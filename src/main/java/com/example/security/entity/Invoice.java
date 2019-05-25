@@ -20,16 +20,18 @@ public class Invoice implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private int number;
+    private double sum;
 
     public Invoice() {
         super();
     }
 
-    public Invoice(User user, Movie movie, Date date, int number) {
+    public Invoice(User user, Movie movie, Date date, int number,double sum) {
         this.user = user;
         this.movie = movie;
         this.date = date;
         this.number = number;
+        this.sum=sum;
     }
 
     public User getUser() {
@@ -70,5 +72,13 @@ public class Invoice implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
     }
 }

@@ -10,6 +10,9 @@ a:hover{
     cursor: pointer;
 }
 
+.popularity{
+    color: red;
+}
 .captionParent {
     overflow: hidden;
     white-space: nowrap;

@@ -10,6 +10,7 @@
     <link rel="stylesheet" th:href="@{css/index.css}">
     <script type="text/javascript" th:src="@{js/jquery-3.3.1.js}"></script>
     <script type="text/javascript" th:src="@{js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/md5.js}"></script>
     <script type="text/javascript" th:src="@{js/index.js}"></script>
     <script type="text/javascript" th:src="@{js/base.js}"></script>
     <title>YMY电影院</title>
@@ -29,7 +30,6 @@
         </div>
         <div class="collapse navbar-collapse" id="target">
             <ul class="nav navbar-nav">
-                <li><a href="#" onclick="switchLog();">转换登录状态</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">类型选择<span class="caret"></span> </a>
                     <ul class="dropdown-menu">
@@ -56,8 +56,8 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right" id="showLogoutUl" style="display: none">
-                <li><a id="usernameDiv"></a></li>
-                <li> <a class="logout" onclick="solveLogout();">退出</a></li>
+                <li><a href="#myInvoiceModal" data-toggle="modal" id="usernameDiv" onclick="getInvoice();"></a></li>
+                <li><a class="logout" onclick="solveLogout();">退出</a></li>
             </ul>
 
         </div>
@@ -91,10 +91,16 @@
                             <div class="tab-pane fade in active" id="tab1">
                                 <form method="post" id="loginForm" onsubmit="return login();">
                                     <div class="col-md-10 col-md-offset-1 myMP">
-                                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                                        <input class="form-control" placeholder="手机号" type="text" name="username"
+                                               id="loginUsername">
                                     </div>
                                     <div class="col-md-10 col-md-offset-1 myMP">
-                                        <input class="form-control" placeholder="密码" type="password" name="password">
+                                        <input class="form-control" placeholder="密码" type="password" maxlength="20"
+                                               minlength="8" name="password" id="loginPassword">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="btn  form-control popularity" style="display: none"
+                                             id="loginSpan"></div>
                                     </div>
                                     <div class="col-md-10 col-md-offset-1 myMP">
                                         <label>
@@ -109,10 +115,20 @@
                             <div class="tab-pane fade " id="tab2">
                                 <form method="post" id="registerForm" onsubmit="return register();">
                                     <div class="col-md-10 col-md-offset-1 myMP">
-                                        <input class="form-control" placeholder="手机号" type="text" name="username">
+                                        <input class="form-control" placeholder="手机号" type="text" name="username"
+                                               id="registerUsername">
                                     </div>
                                     <div class="col-md-10 col-md-offset-1 myMP">
-                                        <input class="form-control" placeholder="密码" type="password" name="password">
+                                        <input class="form-control" placeholder="密码" type="password" minlength="8"
+                                               maxlength="20" name="password" id="registerPassword">
+                                    </div>
+                                    <div class="col-md-10 col-md-offset-1 myMP">
+                                        <input class="form-control" placeholder="确认密码" type="password" name="rePassword"
+                                               id="rePassword">
+                                    </div>
+                                    <div class="col-md-10  ">
+                                        <div class="btn  form-control popularity" style="display: none"
+                                             id="registerSpan"></div>
                                     </div>
                                     <div class="col-md-12 myB">
                                         <input class="btn btn-primary form-control" type="submit" value="注册">
@@ -131,12 +147,35 @@
 </div>
 <br/>
 
+<div id="myInvoiceModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">购票记录</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="invoiceTable">
+                        <tr id="invoiceFirstTr">
+                            <th>电影</th>
+                            <th>购票日期</th>
+                            <th>数量</th>
+                            <th>总价</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row" id="hotMovies">
 
     </div>
 </div>
-
 
 
 </body>
