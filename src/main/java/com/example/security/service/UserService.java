@@ -57,6 +57,7 @@ public class UserService {
             Date date = new Date();
             Invoice invoice = new Invoice(user, movie, date, number);
             movie.setTicket(movie.getTicket() - number);
+            movie.setPopularity(movie.getPopularity()+10);
             movieRepository.save(movie);
             invoiceRepository.save(invoice);
             flag = "true";

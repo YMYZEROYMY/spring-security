@@ -13,3 +13,17 @@ function getHotMovie() {
         }
     })
 }
+function getByType(type) {
+    var temp={
+        target:type
+    };
+    $.ajax({
+        url: "/movie/getByType",
+        type:'post',
+        data:temp,
+        dataType: "json",
+        success: function (data) {
+            solveSearchResult(data);
+        }
+    })
+}

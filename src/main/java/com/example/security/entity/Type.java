@@ -22,6 +22,11 @@ public class Type implements Serializable {
         this.name = name;
     }
 
+    public Type(int id,String name){
+        this.id=id;
+        this.name=name;
+    }
+
     public Set<Movie> getMovies() {
         return movies;
     }

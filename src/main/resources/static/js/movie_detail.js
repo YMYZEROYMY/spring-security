@@ -1,6 +1,7 @@
 $(document).ready(function () {
     whoim();
     getFullMovie();
+    getSameTypeMovie();
 });
 
 function buy() {
@@ -44,6 +45,21 @@ function solveBuyResult(data) {
     }
     getFullMovie();
 }
+
+function getSameTypeMovie() {
+    var dto = {
+        id: $("#movieId").text()
+    };
+    $.ajax({
+        url: "/movie/getSameTypeMovie",
+        dataType: "json",
+        data: dto,
+        success: function (data) {
+            changeToMovie(data,$("#sameType"));
+        }
+    })
+}
+
 
 function getFullMovie() {
     var dto = {

@@ -10,10 +10,7 @@ import com.example.security.service.MovieService;
 import org.springframework.beans.factory.support.ManagedSet;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.MatrixVariable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -31,15 +28,30 @@ public class MovieController {
     @Resource
     private MovieService movieService;
 
+    @RequestMapping("/getByType")
+    @ResponseBody
+    public ArrayList<DTOMovie> getByType(@RequestParam(value = "target",required = false) String target){
+        return movieService.getByType(target);
+    }
+
+    @RequestMapping("/getSameTypeMovie")
+    @ResponseBody
+    public ArrayList<DTOMovie> getSameTypeMovie(int id){
+        return movieService.getSameTypeMovie(id);
+    }
+
     @RequestMapping("/searchMovie")
     @ResponseBody
-    public ArrayList<DTOMovie> searchMovie(String target){
+    public ArrayList<DTOMovie> searchMovie(@RequestParam(value = "target",required = false) String target){
         return movieService.searchMovie(target);
     }
 
     @RequestMapping("/detail/{id}")
-    public String detail(@PathVariable(value = "id") int id,
+    public String detail(@PathVariable(value = "id",required = false) int id,
                          HttpServletRequest request){
+        if(id==0){
+            return "index";
+        }
         request.setAttribute("id",id);
         System.out.println("电影id:"+id);
         return "movie_detail";

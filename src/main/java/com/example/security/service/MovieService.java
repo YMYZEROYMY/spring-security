@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class MovieService {
@@ -32,7 +29,37 @@ public class MovieService {
     private MovieRepository movieRepository;
 
     @Transactional
+    public ArrayList<DTOMovie> getSameTypeMovie(int id){
+        Movie movie=movieRepository.findById(id);
+        Set<Type> types=movie.getTypes();
+        Object[] typeArrayList=types.toArray();
+        List<Movie> movies=movieRepository.findMoviesByTypesContainsOrderByPopularityDesc((Type) typeArrayList[0]);
+        List<Movie> partMovies=new ArrayList<>();
+        int index=0;
+        while (index<4&&index<movies.size()){
+            partMovies.add(movies.get(index));
+            index++;
+        }
+        return DTOChange.movieToDTO(partMovies);
+    }
+
+    @Transactional
+    public ArrayList<DTOMovie> getByType(String target){
+        target=target.trim();
+        if(target.isEmpty()){
+            return null;
+        }
+        Set<Type> types=typeRepository.findByName(target);
+        List<Movie> movies=movieRepository.findMoviesByTypesContainingOrderByPopularityDesc(types);
+        return DTOChange.movieToDTO(movies);
+    }
+
+    @Transactional
     public ArrayList<DTOMovie> searchMovie(String target){
+        target=target.trim();
+        if(target.isEmpty()){
+            return null;
+        }
         target="%"+target+"%";
         Set<Actor> actors=actorRepository.findActorsByNameLike(target);
         List<Movie> movies=movieRepository.findMoviesByNameLikeOrDirector_NameLikeOrActorsContaining(target,target,actors);
@@ -48,6 +75,7 @@ public class MovieService {
     @Transactional
     public DTOFullMovie getFullMovie(int id){
         Movie movie=movieRepository.findById(id);
+        movie.setPopularity(movie.getPopularity()+1);
         return new DTOFullMovie(movie);
     }
 
