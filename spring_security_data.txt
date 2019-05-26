@@ -1,0 +1,332 @@
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+--
+-- Host: localhost    Database: spring_security
+-- ------------------------------------------------------
+-- Server version	5.7.21-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `actor`
+--
+
+DROP TABLE IF EXISTS `actor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `actor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `actor`
+--
+
+LOCK TABLES `actor` WRITE;
+/*!40000 ALTER TABLE `actor` DISABLE KEYS */;
+INSERT INTO `actor` VALUES (1,'小罗伯特·唐尼'),(2,'克里斯·埃文斯'),(3,'斯嘉丽·约翰逊'),(4,'保罗·路德'),(5,'马克·陆法洛'),(6,'马克·斯特朗'),(7,'扎克瑞·莱维'),(8,'亚瑟·安琪'),(9,'杰克·迪伦·格雷泽'),(10,'徐峥'),(11,'谭卓'),(12,'王传君'),(13,'章宇'),(14,'布丽·拉尔森'),(15,'裘德·洛'),(16,'本·门德尔森'),(17,'塞缪尔·杰克逊'),(18,'布丽·拉尔森'),(19,'海莉·斯坦菲尔德'),(20,'约翰·塞纳'),(21,'杰森·德鲁克'),(22,'古天乐'),(23,'林家栋'),(24,'郑嘉贻'),(25,'新垣结衣'),(26,'三浦村马'),(27,'香里奈'),(28,'小出惠介'),(29,'新野源'),(30,'大谷亮平'),(31,'藤井隆'),(32,'户田惠梨香'),(33,'山下智久'),(34,'田中圭'),(35,'松田龙平'),(36,'黑木华');
+/*!40000 ALTER TABLE `actor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `director`
+--
+
+DROP TABLE IF EXISTS `director`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `director` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `director`
+--
+
+LOCK TABLES `director` WRITE;
+/*!40000 ALTER TABLE `director` DISABLE KEYS */;
+INSERT INTO `director` VALUES (1,'安东尼·罗素'),(2,'郭帆'),(3,'尾田荣一郎'),(4,'宫繁之'),(5,'荒木哲郎'),(6,'大卫·F·桑德伯格'),(7,'文牧野'),(8,'安娜·波顿'),(9,'特拉维斯·奈特'),(10,'林德禄'),(11,'今井夏木'),(12,'金子文纪'),(13,'西浦正记'),(14,'水田伸生');
+/*!40000 ALTER TABLE `director` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hibernate_sequence`
+--
+
+DROP TABLE IF EXISTS `hibernate_sequence`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hibernate_sequence`
+--
+
+LOCK TABLES `hibernate_sequence` WRITE;
+/*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
+INSERT INTO `hibernate_sequence` VALUES (1),(1);
+/*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `invoice`
+--
+
+DROP TABLE IF EXISTS `invoice`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `invoice` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `number` int(11) NOT NULL,
+  `sum` double NOT NULL,
+  `movie_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK5vdecsy7kydv87enirw4yyayh` (`movie_id`),
+  KEY `FKjunvl5maki3unqdvljk31kns3` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `invoice`
+--
+
+LOCK TABLES `invoice` WRITE;
+/*!40000 ALTER TABLE `invoice` DISABLE KEYS */;
+INSERT INTO `invoice` VALUES (1,'2019-05-25 08:19:55',2,150.6,1,3),(2,'2019-05-25 08:42:21',1,34,2,3),(3,'2019-05-25 08:44:05',4,136,2,3),(4,'2019-05-25 11:25:05',2,40,4,4),(5,'2019-05-25 12:35:28',1,20,3,4),(6,'2019-05-25 14:48:41',4,292.8,13,3),(7,'2019-05-25 14:50:06',1,34.2,15,3),(8,'2019-05-25 14:51:16',1,73.2,12,3),(9,'2019-05-25 15:21:45',2,146.4,13,4);
+/*!40000 ALTER TABLE `invoice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movie`
+--
+
+DROP TABLE IF EXISTS `movie`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` datetime DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `popularity` int(11) NOT NULL,
+  `price` double NOT NULL,
+  `ticket` int(11) NOT NULL,
+  `director_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKbi47w3cnsfi30gc1nu2avgra2` (`director_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movie`
+--
+
+LOCK TABLES `movie` WRITE;
+/*!40000 ALTER TABLE `movie` DISABLE KEYS */;
+INSERT INTO `movie` VALUES (1,'2019-05-16 10:20:27','复仇者联盟3',320,75.3,98,1),(2,'2019-05-16 10:20:27','流浪地球',615,34,143,2),(3,'2019-05-16 10:20:27','海贼王',185,20,69,3),(4,'2019-05-16 10:20:27','消灭都市',245,20,2,4),(5,'2019-05-16 10:20:27','进击的巨人',60,25.5,30,5),(6,'2019-05-29 00:00:00','雷霆沙赞!',100,60.5,200,6),(7,'2019-05-29 00:00:00','我不是药神',102,73.2,230,7),(8,'2019-05-29 00:00:00','惊奇队长',100,32,20,8),(9,'2019-05-29 00:00:00','复仇者联盟4：最终之战',100,73.2,230,1),(10,'2019-05-29 00:00:00','大黄蜂',100,73.2,230,9),(11,'2019-05-29 00:00:00','反贪风暴4',100,73.2,230,10),(12,'2019-05-29 00:00:00','恋空',204,73.2,229,11),(13,'2019-05-29 00:00:00','逃避可耻但有用',704,73.2,224,12),(14,'2019-05-29 00:00:00','紧急救命电影版',101,34.2,230,13),(15,'2019-05-29 00:00:00','我们无法成为野兽',203,34.2,229,14);
+/*!40000 ALTER TABLE `movie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_and_actors`
+--
+
+DROP TABLE IF EXISTS `movies_and_actors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_and_actors` (
+  `movie_id` int(11) NOT NULL,
+  `actor_id` int(11) NOT NULL,
+  KEY `FKps0h3ie9k2vhr1q5q5gbn11is` (`actor_id`),
+  KEY `FK49il26f15dmjkddcscm6p11t9` (`movie_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_and_actors`
+--
+
+LOCK TABLES `movies_and_actors` WRITE;
+/*!40000 ALTER TABLE `movies_and_actors` DISABLE KEYS */;
+INSERT INTO `movies_and_actors` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(2,1),(2,2),(2,3),(2,4),(2,5),(3,1),(3,2),(3,3),(3,4),(3,5),(4,1),(4,2),(4,3),(4,4),(4,5),(5,1),(5,2),(5,3),(5,4),(5,5),(6,6),(6,7),(6,8),(6,9),(7,10),(7,11),(7,12),(7,13),(8,14),(8,15),(8,16),(8,17),(9,3),(9,18),(9,1),(9,2),(10,19),(10,20),(10,21),(11,22),(11,23),(11,24),(12,25),(12,26),(12,27),(12,28),(13,25),(13,29),(13,30),(13,31),(14,25),(14,32),(14,33),(15,25),(15,34),(15,35),(15,36);
+/*!40000 ALTER TABLE `movies_and_actors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `movies_and_types`
+--
+
+DROP TABLE IF EXISTS `movies_and_types`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `movies_and_types` (
+  `movie_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  KEY `FKpovvqjtiwun4su8g0xwsr8wwj` (`type_id`),
+  KEY `FKnmsmmsqjxivuuwxr40vbburbx` (`movie_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `movies_and_types`
+--
+
+LOCK TABLES `movies_and_types` WRITE;
+/*!40000 ALTER TABLE `movies_and_types` DISABLE KEYS */;
+INSERT INTO `movies_and_types` VALUES (1,1),(1,2),(1,3),(2,2),(2,3),(3,1),(3,2),(3,3),(6,5),(6,1),(4,4),(5,1),(5,2),(5,3),(6,6),(7,7),(7,2),(8,1),(8,8),(8,6),(9,1),(9,8),(9,5),(10,1),(10,8),(10,6),(11,1),(12,4),(12,2),(13,7),(14,2),(15,4),(15,2);
+/*!40000 ALTER TABLE `movies_and_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `persistent_logins`
+--
+
+DROP TABLE IF EXISTS `persistent_logins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `persistent_logins` (
+  `username` varchar(64) NOT NULL,
+  `series` varchar(64) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `persistent_logins`
+--
+
+LOCK TABLES `persistent_logins` WRITE;
+/*!40000 ALTER TABLE `persistent_logins` DISABLE KEYS */;
+INSERT INTO `persistent_logins` VALUES ('2016060105028','rv7N/JXk4uGOpt5N2qPkNA==','2YVkIbZ8mpzffK2u6k7onw==','2019-05-24 19:24:25');
+/*!40000 ALTER TABLE `persistent_logins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'ROLE_USER');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type_index` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `type`
+--
+
+LOCK TABLES `type` WRITE;
+/*!40000 ALTER TABLE `type` DISABLE KEYS */;
+INSERT INTO `type` VALUES (1,'动作'),(2,'剧情'),(3,'热血'),(4,'爱情'),(5,'奇幻'),(6,'冒险'),(7,'喜剧'),(8,'科幻');
+/*!40000 ALTER TABLE `type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (3,'3dbe00a167653a1aaee01d93e77e730e','15520795607'),(4,'25d55ad283aa400af464c76d713c07ad','18076400822');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_roles` (
+  `user_id` int(11) NOT NULL,
+  `roles_id` int(11) NOT NULL,
+  KEY `FKj9553ass9uctjrmh0gkqsmv0d` (`roles_id`),
+  KEY `FK55itppkw3i07do3h7qoclqd4k` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+LOCK TABLES `user_roles` WRITE;
+/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` VALUES (1,1),(2,1),(3,1),(4,1);
+/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-05-25 23:43:16
