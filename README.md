@@ -13,14 +13,23 @@
 配置过程：
   1.导入源程序:
       直接源程序打开；
+      
       git导入：
         创建本地git（git init）;
+        
         添加远程仓库（git remote add origin https://github.com/YMYZEROYMY/spring-security.git）;
+        
         获取程序（git pull origin hot）;
+        
     idea中打开，mvn自动加载依赖包
+    
   2.导入数据库：
       找到源程序根目录下的数据库备份，名称：spring_security_data.txt;
+      
       进入mysql，创建数据库spring_security（create database spring_security;），进入数据库（use spring_security）;
+      
       导入数据（source 备份路径/spring_security_data.txt;）;
+      
   3.更改源程序中resources的数据库用户名及密码；
+  
   4.运行程序。
